@@ -23,11 +23,13 @@ public class CalDayTest {
 	 	public void test01() throws Throwable {
 		 GregorianCalendar today = new GregorianCalendar(2018,01,28);
 		 CalDay calDays = new CalDay(today); 
+		 CalDay calDay2 = new CalDay(); //valid = false
 		 
 		 assertTrue(calDays.isValid());
 		 assertEquals(28, calDays.getDay());
 		 assertEquals(01, calDays.getMonth());
 		 assertEquals(2018, calDays.getYear());
+		 assertEquals(false,calDay2.isValid());
 		 
 		 
 		 

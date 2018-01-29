@@ -107,7 +107,9 @@ public class TimeTableTest {
                   startYear ,
                   title,
                  description);
+         appt2.setRecurrence( recurDaysArr, Appt.RECUR_BY_YEARLY, 2, Appt.RECUR_NUMBER_FOREVER);
          listAppts.add(appt2);
+         
          
          int[] pv = {1,0};
          

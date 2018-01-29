@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 public class ApptTest {
-	//82% Coverage
+	
     /**
      * Test that the gets methods work as expected.
      */
@@ -41,6 +41,9 @@ public class ApptTest {
 		 assertEquals("This is my birthday party.", appt.getDescription());    
 		 
 		 assertTrue(Objects.equals("\t01/15/2018 at 9:30pm ,Birthday Party, This is my birthday party.\n", appt.toString()));
+		 
+		 appt.setStartHour(34);
+		 assertEquals(false,appt.getValid());
 	 }
 
 	 /* Tests Recurrence methods
