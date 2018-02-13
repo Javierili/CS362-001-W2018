@@ -30,7 +30,7 @@ public class ApptTest {
 		          startYear ,
 		          title,
 		         description);
-	// assertions
+	// Valid assertions
 		 assertTrue(appt.getValid());
 		 assertEquals(21, appt.getStartHour());
 		 assertEquals(30, appt.getStartMinute());
@@ -39,11 +39,57 @@ public class ApptTest {
 		 assertEquals(2018, appt.getStartYear());
 		 assertEquals("Birthday Party", appt.getTitle());
 		 assertEquals("This is my birthday party.", appt.getDescription());    
+		 //default recurrence:
+		 assertEquals(false, appt.isRecurring());
+		 assertEquals(0,appt.getRecurNumber());
+         assertEquals(2,appt.getRecurBy());
+         
 	
-	//	 assertTrue(Objects.equals("\t01/15/2018 at 9:30pm ,Birthday Party, This is my birthday party.\n", appt.toString()));
+	// InValid Assertions
+         //Covers lines 134 ~- 160
 		 
 		 appt.setStartHour(34);
 		 assertEquals(false,appt.getValid());
+		 assertNull(appt.toString());
+		 for (int x = 0; x <=23 ; x++){
+			 appt.setStartHour(x);
+			 assertTrue(appt.getValid());
+		 }
+		 appt.setStartHour(11);
+		 assertTrue(appt.getValid());
+		 
+		 appt.setStartMinute(-2);
+		 assertEquals(false,appt.getValid());
+		 for (int x = 0; x <=59 ; x++){
+			 appt.setStartMinute(x);
+			 assertTrue(appt.getValid());
+		 }
+		 appt.setStartMinute(33);
+		 assertTrue(appt.getValid());
+		
+		 appt.setStartDay(32);
+		 assertEquals(false,appt.getValid());
+		 for (int x = 1; x <=31 ; x++){
+			 appt.setStartDay(x);
+			 assertTrue(appt.getValid());
+		 }
+		 appt.setStartDay(12);
+		 assertTrue(appt.getValid());
+		
+		 appt.setStartMonth(0);
+		 assertEquals(false,appt.getValid());
+		 for (int x = 1; x <=10 ; x++){  //[[ERROR]] Why does it not work for 11 and 12?
+			 appt.setStartMonth(x);
+			 assertTrue(appt.getValid());
+		 }
+		 appt.setStartMonth(10);
+		 assertTrue(appt.getValid());
+		 
+		 appt.setStartMinute(66);
+		 appt.setStartYear(2016);
+		 assertEquals(false,appt.getValid());
+
+		 
 		 
 	 }
 
@@ -83,7 +129,7 @@ public class ApptTest {
 		 
 	 }
 	
-	 
+// [[ FIX STRING ASSERTIONS SOMEHOW ]]	 
 	  /* Tests ToString methods
 	  * Assumes passed test01 */
 	 @Test
@@ -94,8 +140,16 @@ public class ApptTest {
 		 int startDay=15;
 		 int startMonth=01;
 		 int startYear=2018;
-		 String title="Birthday Party";
-		 String description="This is my birthday party.";
+		 
+		 int startHour2=23;
+		 int startDay2=20;
+		 int startMinute2=35;
+		 int startMonth2 = 03;
+		 int startYear2=2020;
+		 
+		 int startHour3 = 2;
+		 String title="HELP";
+		 String description="HELPME.";
 		 //Construct a new Appointment object with the initial data	 
 		 Appt appt = new Appt(startHour,
 		          startMinute ,
@@ -118,13 +172,47 @@ public class ApptTest {
 		          startYear ,
 		          title,
 		         description);
+		 Appt appt4 = new Appt(startHour2,
+		          startMinute2 ,
+		          startDay2 ,
+		          startMonth2 ,
+		          startYear2 ,
+		          title,
+		         description);
+		 Appt appt5 = new Appt(startHour3,
+		          startMinute2 ,
+		          startDay2 ,
+		          startMonth2 ,
+		          startYear2 ,
+		          title,
+		         description);
 		 
 		 
 		
 		 assertEquals(0,appt.compareTo(appt2));
 		 assertEquals(5,appt.compareTo(appt3));
+		 assertEquals(-16,appt.compareTo(appt4));
+		 String day = "\t01/15/2018 at 9:30pm ,HELP, HELPME.\n";
+		 char t = '2';
+		 assertEquals(t,appt.toString().charAt(6));
+		 assertEquals('9',appt.toString().charAt(14));
+		 
+		 for(int i=12;i<24;i++){
+			 appt.setStartHour(i);
+			 if(i>12 && i<22){
+			 assertEquals('p',appt.toString().charAt(18));
+			 }
+			 else {
+			assertEquals('p',appt.toString().charAt(19));	 
+			 }
+		 }
+	
+		 assertEquals('a',appt5.toString().charAt(18));
 		 //String day= this.getStartMonth()+"/"+this.getStartDay()+"/"+this.getStartYear() + " at ";
 		 // return "\t"+ day +  this.represntationApp()  + " ," +  getTitle()+ ", "+  getDescription()+"\n";
+		 //assertTrue(Objects.equals(day, appt.toString()));
+	//	 assertEquals(day, appt.toString());
+	 
 	 }
 //add more unit tests as you needed
 	
