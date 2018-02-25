@@ -80,7 +80,10 @@ public class TimeTableTest {
 	 
 	 
 	 
-	 
+	/* Tests: DeleteAppts
+	 * 	permute
+	 *  getApptsRange 
+	 */
 	 @Test
 	  public void test02()  throws Throwable  {
 		 //Set up appointment(s)
@@ -186,6 +189,11 @@ public class TimeTableTest {
 		 //public LinkedList<Appt> deleteAppt(LinkedList<Appt> appts,Appt appt)
 	 }
 	 
+	 
+	 /* Tests:
+	  * Mostly same as test02, but more in-depth + checking recurrence
+	  * 
+	  */
 	 @Test
 	  public void test03()  throws Throwable  {
 		 LinkedList<Appt> listAppts = new LinkedList<Appt>();

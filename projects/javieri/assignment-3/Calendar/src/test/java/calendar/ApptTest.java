@@ -78,7 +78,7 @@ public class ApptTest {
 		
 		 appt.setStartMonth(0);
 		 assertEquals(false,appt.getValid());
-		 for (int x = 1; x <=10 ; x++){  //[[ERROR]] Why does it not work for 11 and 12?
+		 for (int x = 1; x <=10 ; x++){  //[[ERROR]] Why does it not work for 11 and 12? //Feb 24: SOLVED : Appt.java line 113
 			 appt.setStartMonth(x);
 			 assertTrue(appt.getValid());
 		 }
