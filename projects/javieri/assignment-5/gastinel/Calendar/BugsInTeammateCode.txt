@@ -1,0 +1,10 @@
+In Appt.java
+Method name: getStartHour(), line 135
+Description: Instead of returning the startHour of the Appt, returns the startMinute. Meaning startHour can be between 0 and 59, making it possible for the Appt to be incorrect and possibly even invalid. 
+Was discovered by assertion errors in ApptTest.java, incorrect assertions when checking validity of startHour. 
+
+
+In CalDay.java
+Method name: getDay(), line 147
+Description: Instead of returning day of that instance of CalDay, returns the month. Day int can be between 1 and 31, depending on the month, but month can only be between 1 and 12. This causes the getter to return and wrong day of the CalDay and possibly set the date of it to be wrong. 
+Was discovered by assertion errors in CalDayTest.java, incorrect assertions for getDay(). 

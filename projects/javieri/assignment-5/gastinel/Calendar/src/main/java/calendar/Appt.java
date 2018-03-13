@@ -12,6 +12,7 @@ import java.util.Comparator;
  *  a timetable.  The appointment consists of startHour, startMinute,
  *   startDay, startMonth, startYear, title, and description
  *   
+ *   Lauren's Code
  *   
  */
 /**
@@ -110,9 +111,9 @@ public class Appt implements  Comparable<Appt>{
      * @sets valid to true if the appointment is valid
      */
     private void isValid() {
-    	int NumDaysInMonth= CalendarUtil.NumDaysInMonth(startYear,startMonth-1); //[[ERROR]] should be -1
+    	int NumDaysInMonth= CalendarUtil.NumDaysInMonth(startYear,startMonth-1);
     				
-    	if(startHour<0 || startHour>23)
+    	if(startHour<0 || startHour>24) //[[Error]]
     		this.valid=false;
     	else
         	if(startMinute<0 || startMinute>59)
@@ -131,7 +132,7 @@ public class Appt implements  Comparable<Appt>{
 
     /** Sets startHour */
     public void setStartHour(int startHour) {
-    	this.startHour = startHour;
+    	this.startHour = startMinute;  //[[ERROR]]
     	 isValid();
     }
     
@@ -156,7 +157,7 @@ public class Appt implements  Comparable<Appt>{
     /** Sets startYear */
     public void setStartYear(int startYear) {
         this.startYear = startYear;
-        isValid();  //[[UNTESTABLE / REDUNDANT]]
+        isValid();
     }
 
     /** Sets title */
